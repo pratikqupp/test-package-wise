@@ -4,22 +4,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ToplLabsBazaar.com</title>
+    <title>TopLabsBazzar.com</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 
     <style>
         :root {
-            /* Material 3 Inspired Color Palette */
-            --primary-color: #386a20;
-            /* Dark Green */
-            --primary-container: #b9f396;
-            --on-primary-container: #002200;
-            --secondary-color: #55624c;
-            --tertiary-color: #386666;
-            --bg-color: #f8fbf4;
+            /* "Official" Color Palette (Blue/Grey) */
+            --primary-color: #000000;
+            /* Trustworthy Blue */
+            --primary-container: #e6f0ff;
+            --secondary-color: #334155;
+            /* Slate (for text) */
+            --tertiary-color: #64748B;
+            /* Muted Grey (for tags) */
+            --success-color: #16a34a;
+            /* Green (for price/add) */
+            --bg-color: #f8f9fa;
+            /* Light Grey BG */
             --card-bg: #ffffff;
-            --border-color: #dce5d6;
+            --border-color: #e2e8f0;
+            /* Light Slate Border */
             --shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 2px 4px rgba(0, 0, 0, 0.05);
             --shadow-hover: 0 4px 8px rgba(0, 0, 0, 0.07), 0 2px 6px rgba(0, 0, 0, 0.06);
             --radius-md: 12px;
@@ -30,7 +35,8 @@
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             background-color: var(--bg-color);
-            color: #1a1c18;
+            color: #1e293b;
+            /* Darker Slate */
             margin: 0;
             line-height: 1.6;
         }
@@ -45,13 +51,17 @@
             font-weight: 600;
         }
 
+        h2 {
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+        }
+
         .container {
             max-width: 1600px;
             margin: 0 auto;
             padding: 20px;
         }
 
-        /* Helper class to align icons with text */
         .icon-text {
             display: inline-flex;
             align-items: center;
@@ -60,10 +70,9 @@
 
         .icon-text .material-symbols-outlined {
             font-size: 1.25em;
-            /* 20px if base is 16px */
         }
 
-        /* --- Buttons (Material 3 Style) --- */
+        /* --- Buttons --- */
         button {
             cursor: pointer;
             border: none;
@@ -73,7 +82,6 @@
             font-weight: 600;
             transition: all 0.2s ease;
             -webkit-tap-highlight-color: transparent;
-            /* For mobile */
         }
 
         .btn {
@@ -89,8 +97,7 @@
         }
 
         .btn-primary:hover {
-            background-color: #2a5018;
-            /* Darker green */
+            background-color: #0052cc;
             box-shadow: var(--shadow-hover);
             transform: translateY(-1px);
         }
@@ -102,19 +109,19 @@
         }
 
         .btn-secondary:hover {
-            background-color: #40493b;
+            background-color: #1e293b;
             box-shadow: var(--shadow-hover);
             transform: translateY(-1px);
         }
 
         .btn-tertiary {
-            background-color: #f0f4ec;
-            color: var(--primary-color);
+            background-color: #f8f9fa;
+            color: var(--secondary-color);
             border: 1px solid var(--border-color);
         }
 
         .btn-tertiary:hover {
-            background-color: #e4e9e1;
+            background-color: #eef2f6;
         }
 
         .btn-edit {
@@ -125,18 +132,18 @@
         }
 
         .btn-green {
-            background-color: var(--primary-color);
+            background-color: var(--success-color);
             color: white;
         }
 
         .btn-green:hover {
-            background-color: #2a5018;
+            background-color: #15803d;
         }
 
         .price {
             font-size: 1.25em;
             font-weight: 700;
-            color: var(--primary-color);
+            color: var(--success-color);
         }
 
         /* --- App Toolbar --- */
@@ -175,6 +182,13 @@
             transform: translateY(-2px);
         }
 
+        /* --- Section Styling --- */
+        .page-section {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto 40px auto;
+        }
+
         /* --- Admin View (Responsive) --- */
         #admin-view .dashboard-grid {
             display: grid;
@@ -203,7 +217,7 @@
             border-radius: var(--radius-md);
             padding: 15px;
             margin-bottom: 15px;
-            background: #fafcfa;
+            background: #fafafa;
         }
 
         .item-card-header {
@@ -225,7 +239,7 @@
         }
 
         .item-card-body li {
-            color: #40493b;
+            color: #475569;
             font-size: 0.9em;
             padding: 4px 0;
             display: flex;
@@ -242,26 +256,43 @@
 
         .item-card-body .test-price {
             font-weight: 600;
-            color: #444;
+            color: var(--secondary-color);
         }
 
-        /* --- Customer View (Responsive) --- */
-        #customer-view h1 {
+        /* --- Customer View (Landing Page) --- */
+
+        /* Hero Section */
+        .hero-section {
             text-align: center;
+            padding: 40px 20px;
+            background-color: var(--card-bg);
+            border-radius: var(--radius-lg);
+            margin-bottom: 40px;
+            box-shadow: var(--shadow);
+        }
+
+        .hero-section h1 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .hero-section p {
+            font-size: 1.1rem;
+            color: var(--secondary-color);
             margin-bottom: 30px;
         }
 
         /* Search Bar */
         .search-container {
             max-width: 800px;
-            margin: 0 auto 30px auto;
+            margin: 0 auto;
             position: relative;
         }
 
         #search-bar {
             width: 100%;
-            padding: 16px 50px 16px 20px;
-            /* Space for icon */
+            padding: 16px 50px 16px 55px;
             font-size: 1.1em;
             border-radius: var(--radius-lg);
             border: 1px solid var(--border-color);
@@ -271,10 +302,10 @@
 
         #search-icon {
             position: absolute;
-            left: 15px;
+            left: 20px;
             top: 50%;
             transform: translateY(-50%);
-            color: #888;
+            color: #94a3b8;
         }
 
         #clear-search-btn {
@@ -283,7 +314,7 @@
             top: 50%;
             transform: translateY(-50%);
             font-size: 1.2em;
-            color: #888;
+            color: #94a3b8;
             background: none;
             display: none;
         }
@@ -291,6 +322,8 @@
         /* Search Results */
         #search-results-container {
             display: none;
+            max-width: 800px;
+            margin: 20px auto 0 auto;
         }
 
         .search-result-card {
@@ -344,6 +377,75 @@
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
+        }
+
+        /* Browse by Category */
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 20px;
+        }
+
+        .category-card {
+            background: var(--card-bg);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease-out;
+            border: 1px solid var(--border-color);
+        }
+
+        .category-card:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-2px);
+            border-color: var(--primary-color);
+        }
+
+        .category-card .icon-container {
+            font-size: 36px;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .category-card p {
+            margin: 0;
+            font-weight: 600;
+            color: var(--secondary-color);
+        }
+
+        /* How It Works */
+        .how-it-works-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .how-it-works-step {
+            background: var(--card-bg);
+            border-radius: var(--radius-lg);
+            padding: 25px;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .how-it-works-step .icon-container {
+            font-size: 40px;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .how-it-works-step h3 {
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .how-it-works-step p {
+            margin: 0;
+            color: #555;
+            font-size: 0.95rem;
         }
 
         /* Package Grid */
@@ -473,6 +575,7 @@
 
         .modal-header h2 {
             margin: 0;
+            color: var(--primary-color);
         }
 
         .close-btn {
@@ -662,7 +765,7 @@
         }
 
         .snackbar.success {
-            background-color: var(--primary-color);
+            background-color: var(--success-color);
         }
 
         .snackbar.error {
@@ -704,16 +807,12 @@
 
         /* --- Responsive Media Queries --- */
         @media (min-width: 600px) {
-
-            /* Make checkout form 2 columns on desktop */
             #checkout-form-grid {
                 grid-template-columns: 1fr 1fr;
             }
         }
 
         @media (max-width: 768px) {
-
-            /* Stack search results actions on mobile */
             .search-result-card {
                 flex-direction: column;
                 align-items: flex-start;
@@ -731,6 +830,10 @@
                 margin: 5% auto;
                 width: 95%;
             }
+
+            .hero-section h1 {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
@@ -740,7 +843,7 @@
     <div class="app-toolbar">
         <div class="logo icon-text">
             <span class="material-symbols-outlined">health_and_safety</span>
-            ToplLabsBazaar.com
+            TopLabsBazaar.com
         </div>
         <div class="controls">
             <button id="toggle-view-btn" class="btn-secondary icon-text">
@@ -795,19 +898,56 @@
 
         <div id="customer-view" style="display: none;">
 
-            <div class="search-container">
-                <span id="search-icon" class="material-symbols-outlined">search</span>
-                <input type="text" id="search-bar" placeholder="Search for any test, profile, or package...">
-                <button id="clear-search-btn" class="icon-text">
-                    <span class="material-symbols-outlined">close</span>
-                </button>
+            <div class="hero-section page-section">
+                <h1>Book Your Lab Test</h1>
+                <p>Reliable, at-home sample collection. Get your reports online.</p>
+                <div class="search-container">
+                    <span id="search-icon" class="material-symbols-outlined">search</span>
+                    <input type="text" id="search-bar" placeholder="Search for any test, profile, or package...">
+                    <button id="clear-search-btn" class="icon-text">
+                        <span class="material-symbols-outlined">close</span>
+                    </button>
+                </div>
             </div>
 
-            <div id="search-results-container">
+            <div id="search-results-container" class="page-section">
             </div>
 
-            <div id="featured-packages-container">
-                <h1>Featured Health Packages</h1>
+            <div id="browse-by-category-container" class="page-section">
+                <h2>Browse by Health Concern</h2>
+                <div id="category-grid" class="category-grid">
+                </div>
+            </div>
+
+            <div id="how-it-works-container" class="page-section">
+                <h2>How It Works</h2>
+                <div class="how-it-works-grid">
+                    <div class="how-it-works-step">
+                        <div class="icon-container">
+                            <span class="material-symbols-outlined">edit_calendar</span>
+                        </div>
+                        <h3>1. Book Your Test</h3>
+                        <p>Select your tests or packages and book a convenient time slot.</p>
+                    </div>
+                    <div class="how-it-works-step">
+                        <div class="icon-container">
+                            <span class="material-symbols-outlined">blood_pressure</span>
+                        </div>
+                        <h3>2. Home Sample Collection</h3>
+                        <p>A certified phlebotomist collects your sample from your home.</p>
+                    </div>
+                    <div class="how-it-works-step">
+                        <div class="icon-container">
+                            <span class="material-symbols-outlined">download</span>
+                        </div>
+                        <h3>3. Get Your Report</h3>
+                        <p>Access your smart, easy-to-understand reports online.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="featured-packages-container" class="page-section">
+                <h2>Popular Health Packages</h2>
                 <div id="package-grid">
                 </div>
             </div>
@@ -958,11 +1098,22 @@
                     description: "A specialized package designed for individuals managing diabetes. It tracks your 3-month sugar average (HbA1c) and monitors potential complications in the kidneys (KFT) and heart (Lipid Profile).",
                     who_is_it_for: "Diagnosed diabetics and pre-diabetics for regular monitoring."
                 }
+            ],
+            // --- Category Data (ICONS FIXED) ---
+            categories: [
+                { id: "cat1", name: "Full Body", icon: "health_and_safety", query: "Checkup" },
+                { id: "cat2", name: "Heart", icon: "monitor_heart", query: "Lipid" },
+                { id: "cat3", name: "Diabetes", icon: "science", query: "Diabetes" },
+                { id: "cat4", name: "Vitamins", icon: "medication", query: "Vitamin" },
+                { id: "cat5", name: "Thyroid", icon: "science", query: "Thyroid" },
+                { id: "cat6", name: "Women", icon: "woman", query: "Women" },
+                { id: "cat7", name: "Kidney", icon: "water_drop", query: "Kidney" },
+                { id: "cat8", name: "Liver", icon: "biotech", query: "Liver" }
             ]
         };
 
         // --- 2. CUSTOMER CART ---
-        let globalCart = []; // e.g., [{ type: 'package', id: 'pkg1' }, { type: 'test', id: 't1' }]
+        let globalCart = [];
 
         // --- 3. UTILITY & PRICING LOGIC ---
         const findTest = (id) => appDatabase.tests.find(t => t.id === id);
@@ -987,7 +1138,6 @@
 
         function getItemPrice(type, id, tempProfileIds = null, tempTestIds = null) {
             let uniqueTestIds = new Set();
-
             if (type === 'test') {
                 uniqueTestIds.add(id);
             } else if (type === 'profile') {
@@ -995,19 +1145,15 @@
             } else if (type === 'package') {
                 uniqueTestIds = getTestIdsFromPackage(id);
             } else if (type === null) {
-                // Used for live preview in admin modal
                 (tempTestIds || []).forEach(tId => uniqueTestIds.add(tId));
                 (tempProfileIds || []).forEach(pId => {
                     getTestIdsFromProfile(pId).forEach(tId => uniqueTestIds.add(tId));
                 });
             }
-
             let totalPrice = 0;
             uniqueTestIds.forEach(tId => {
                 const test = findTest(tId);
-                if (test) {
-                    totalPrice += test.price;
-                }
+                if (test) { totalPrice += test.price; }
             });
             return totalPrice;
         }
@@ -1018,29 +1164,18 @@
             if (type === 'package') return findPackage(id)?.name || 'Unknown Package';
         }
 
-        // --- 4. NEW SNACKBAR/TOAST FUNCTION ---
+        // --- 4. SNACKBAR FUNCTION ---
         function showSnackbar(message, type = 'success') {
-            // Remove any existing snackbar
             const existingSnackbar = document.getElementById('snackbar');
-            if (existingSnackbar) {
-                existingSnackbar.remove();
-            }
-
+            if (existingSnackbar) { existingSnackbar.remove(); }
             const snackbar = document.createElement('div');
             snackbar.id = 'snackbar';
             snackbar.className = `snackbar ${type} show`;
             snackbar.textContent = message;
-
             document.body.appendChild(snackbar);
-
-            // After 3 seconds, add 'hide' class, then remove element
             setTimeout(() => {
                 snackbar.className = snackbar.className.replace('show', 'hide');
-                setTimeout(() => {
-                    if (snackbar.parentNode) {
-                        snackbar.parentNode.removeChild(snackbar);
-                    }
-                }, 500); // Wait for fade out animation
+                setTimeout(() => { if (snackbar.parentNode) { snackbar.parentNode.removeChild(snackbar); } }, 500);
             }, 3000);
         }
 
@@ -1071,7 +1206,6 @@
             const list = document.getElementById('profiles-list');
             list.innerHTML = '';
             appDatabase.profiles.forEach(profile => {
-                // --- NEW: Show all test names in admin ---
                 let testsHtml = '<ul>';
                 if (profile.testIds.length > 0) {
                     profile.testIds.forEach(testId => {
@@ -1142,8 +1276,9 @@
             renderPackages();
         }
 
-        // --- 6. RENDER FUNCTIONS (CUSTOMER) ---
-        function renderCustomerView() {
+        // --- 6. RENDER FUNCTIONS (CUSTOMER LANDING PAGE) ---
+
+        function renderFeaturedPackages() {
             const grid = document.getElementById('package-grid');
             grid.innerHTML = '';
             if (appDatabase.packages.length === 0) {
@@ -1179,6 +1314,26 @@
             });
         }
 
+        function renderCategories() {
+            const grid = document.getElementById('category-grid');
+            grid.innerHTML = '';
+            appDatabase.categories.forEach(cat => {
+                grid.innerHTML += `
+                    <div class="category-card" data-action="searchCategory" data-query="${cat.query}">
+                        <div class="icon-container">
+                            <span class="material-symbols-outlined">${cat.icon}</span>
+                        </div>
+                        <p>${cat.name}</p>
+                    </div>
+                `;
+            });
+        }
+
+        function renderCustomerView() {
+            renderFeaturedPackages();
+            renderCategories();
+        }
+
         // --- 7. ADMIN MODAL LOGIC ---
         const adminModal = document.getElementById('admin-modal');
         const adminModalTitle = document.getElementById('admin-modal-title');
@@ -1191,13 +1346,11 @@
         }
 
         function openAdminModal(action, id = null) {
-            adminModalBody.innerHTML = ''; // Clear
-
+            adminModalBody.innerHTML = '';
             let titleIcon = 'edit_note';
             let titleText = 'Edit Item';
 
             switch (action) {
-                // --- ADD/EDIT TEST ---
                 case 'addTest':
                 case 'editTest':
                     const test = action === 'editTest' ? findTest(id) : null;
@@ -1219,12 +1372,10 @@
                     adminModalSaveBtn.onclick = () => saveTest(id);
                     break;
 
-                // --- ADD/EDIT PROFILE ---
                 case 'addProfile':
                 case 'editProfile':
                     const profile = action === 'editProfile' ? findProfile(id) : null;
                     titleText = profile ? 'Edit Profile & Test Mapping' : 'Add New Profile';
-
                     let testsHtml = appDatabase.tests.map(test => {
                         const isChecked = profile ? profile.testIds.includes(test.id) : false;
                         return `
@@ -1247,12 +1398,10 @@
                     adminModalSaveBtn.onclick = () => saveProfile(id);
                     break;
 
-                // --- ADD/EDIT PACKAGE ---
                 case 'addPackage':
                 case 'editPackage':
                     const pkg = action === 'editPackage' ? findPackage(id) : null;
                     titleText = pkg ? 'Edit Package & Mapping' : 'Add New Package';
-
                     let profilesHtml = appDatabase.profiles.map(p => {
                         const isChecked = pkg ? pkg.profileIds.includes(p.id) : false;
                         return `
@@ -1262,7 +1411,6 @@
                             </div>
                         `;
                     }).join('');
-
                     let individualTestsHtml = appDatabase.tests.map(t => {
                         const isChecked = pkg ? pkg.testIds.includes(t.id) : false;
                         return `
@@ -1272,14 +1420,12 @@
                             </div>
                         `;
                     }).join('');
-
                     adminModalBody.innerHTML = `
                         <div class="modal-tabs">
                             <span class="tab-link active" data-tab="tab-basic">Basic Info</span>
                             <span class="tab-link" data-tab="tab-profiles">Map Profiles</span>
                             <span class="tab-link" data-tab="tab-tests">Map Individual Tests</span>
                         </div>
-                        
                         <div id="tab-basic" class="tab-content active">
                             <div class="form-group">
                                 <label for="form-package-name">Package Name</label>
@@ -1288,14 +1434,12 @@
                             <h3 style="margin-top: 20px;">Live Price Preview (Based on unique tests)</h3>
                             <h2 id="live-price-preview" class="price">₹0</h2>
                         </div>
-                        
                         <div id="tab-profiles" class="tab-content">
                             <div class="form-group">
                                 <label>Select Profiles to include:</label>
                                 <div class="mapping-container" id="profile-mapping-container">${profilesHtml}</div>
                             </div>
                         </div>
-
                         <div id="tab-tests" class="tab-content">
                             <div class="form-group">
                                 <label>Select Individual Tests to add:</label>
@@ -1303,7 +1447,6 @@
                             </div>
                         </div>
                     `;
-
                     const pricePreviewEl = document.getElementById('live-price-preview');
                     const updateLivePrice = () => {
                         const mappedProfileIds = Array.from(document.querySelectorAll('#profile-mapping-container .mapping-checkbox:checked')).map(cb => cb.dataset.id);
@@ -1311,9 +1454,7 @@
                         const newPrice = getItemPrice(null, null, mappedProfileIds, mappedTestIds);
                         pricePreviewEl.textContent = `₹${newPrice}`;
                     };
-
                     adminModalBody.querySelectorAll('.mapping-checkbox').forEach(cb => cb.addEventListener('change', updateLivePrice));
-
                     adminModalBody.querySelectorAll('.tab-link').forEach(link => {
                         link.addEventListener('click', (e) => {
                             adminModalBody.querySelectorAll('.tab-link').forEach(l => l.classList.remove('active'));
@@ -1322,12 +1463,10 @@
                             document.getElementById(e.target.dataset.tab).classList.add('active');
                         });
                     });
-
                     updateLivePrice();
                     adminModalSaveBtn.onclick = () => savePackage(id);
                     break;
             }
-
             adminModalTitle.innerHTML = `<span class="material-symbols-outlined">${titleIcon}</span> ${titleText}`;
             adminModal.style.display = 'block';
         }
@@ -1338,10 +1477,8 @@
             const params = document.getElementById('form-test-params').value;
             const price = parseInt(document.getElementById('form-test-price').value, 10);
             if (!name || !price) {
-                showSnackbar('Test Name and Price are required.', 'error');
-                return;
+                showSnackbar('Test Name and Price are required.', 'error'); return;
             }
-
             if (id) {
                 const test = findTest(id);
                 test.name = name; test.params = params; test.price = price;
@@ -1357,11 +1494,9 @@
         function saveProfile(id) {
             const name = document.getElementById('form-profile-name').value;
             if (!name) {
-                showSnackbar('Profile Name is required.', 'error');
-                return;
+                showSnackbar('Profile Name is required.', 'error'); return;
             }
             const mappedTestIds = Array.from(document.querySelectorAll('.mapping-container .mapping-checkbox:checked')).map(cb => cb.dataset.id);
-
             if (id) {
                 const profile = findProfile(id);
                 profile.name = name; profile.testIds = mappedTestIds;
@@ -1377,13 +1512,10 @@
         function savePackage(id) {
             const name = document.getElementById('form-package-name').value;
             if (!name) {
-                showSnackbar('Package Name is required.', 'error');
-                return;
+                showSnackbar('Package Name is required.', 'error'); return;
             }
-
             const mappedProfileIds = Array.from(document.querySelectorAll('#profile-mapping-container .mapping-checkbox:checked')).map(cb => cb.dataset.id);
             const mappedTestIds = Array.from(document.querySelectorAll('#test-mapping-container .mapping-checkbox:checked')).map(cb => cb.dataset.id);
-
             if (id) {
                 const pkg = findPackage(id);
                 pkg.name = name; pkg.profileIds = mappedProfileIds; pkg.testIds = mappedTestIds;
@@ -1454,17 +1586,14 @@
                 titleIcon = 'inventory_2';
                 const price = getItemPrice('package', id);
                 const uniqueTestIds = getTestIdsFromPackage(id);
-
                 let profilesHtml = item.profileIds.map(pId => {
                     const profile = findProfile(pId);
                     return profile ? `<li><span>${profile.name} (${profile.testIds.length} tests)</span></li>` : '';
                 }).join('');
-
                 let testsHtml = item.testIds.map(tId => {
                     const test = findTest(tId);
                     return test ? `<li><span>${test.name} (Individual)</span></li>` : '';
                 }).join('');
-
                 html = `
                     <div class="detail-section">
                         <p>${item.description || 'No description available.'}</p>
@@ -1500,29 +1629,21 @@
         const searchBar = document.getElementById('search-bar');
         const clearSearchBtn = document.getElementById('clear-search-btn');
         const resultsContainer = document.getElementById('search-results-container');
-        const featuredContainer = document.getElementById('featured-packages-container');
 
         function handleSearch() {
             const term = searchBar.value.toLowerCase().trim();
             clearSearchBtn.style.display = term.length > 0 ? 'block' : 'none';
-
             if (term.length < 2) {
                 resultsContainer.style.display = 'none';
-                featuredContainer.style.display = 'block';
                 resultsContainer.innerHTML = '';
                 return;
             }
-
             resultsContainer.style.display = 'block';
-            featuredContainer.style.display = 'none';
             resultsContainer.innerHTML = '';
-
             const tests = appDatabase.tests.filter(t => t.name.toLowerCase().includes(term));
             const profiles = appDatabase.profiles.filter(p => p.name.toLowerCase().includes(term));
             const packages = appDatabase.packages.filter(p => p.name.toLowerCase().includes(term));
-
             let resultsHtml = '';
-
             tests.forEach(item => {
                 resultsHtml += `
                     <div class="search-result-card">
@@ -1542,7 +1663,6 @@
                     </div>
                 `;
             });
-
             profiles.forEach(item => {
                 const price = getItemPrice('profile', item.id);
                 resultsHtml += `
@@ -1563,7 +1683,6 @@
                     </div>
                 `;
             });
-
             packages.forEach(item => {
                 const price = getItemPrice('package', item.id);
                 const testCount = getTestIdsFromPackage(item.id).size;
@@ -1585,14 +1704,12 @@
                     </div>
                 `;
             });
-
             if (resultsHtml === '') {
-                resultsContainer.innerHTML = '<p style="text-align: center;">No results found.</p>';
+                resultsContainer.innerHTML = '<p style="text-align: center;">No results found for "' + term + '".</p>';
             } else {
-                resultsContainer.innerHTML = resultsHtml;
+                resultsContainer.innerHTML = `<h3>Search Results</h3>${resultsHtml}`;
             }
         }
-
         function clearSearch() {
             searchBar.value = '';
             handleSearch();
@@ -1601,6 +1718,11 @@
         // --- 11. CUSTOMER CART & CHECKOUT LOGIC ---
         const cartBtn = document.getElementById('cart-btn');
         const checkoutModal = document.getElementById('checkout-modal');
+
+        // --- THIS IS THE FIX ---
+        // We attach the listener *directly* after defining the button.
+        // Since the script is at the end of the <body>, we know #cart-btn exists.
+        cartBtn.addEventListener('click', openCheckoutModal);
 
         function updateCartCount() {
             cartBtn.innerHTML = `
@@ -1620,41 +1742,33 @@
             const totalEl = document.getElementById('cart-total');
             listEl.innerHTML = '';
             let simpleTotal = 0;
-
             if (globalCart.length === 0) {
                 listEl.innerHTML = '<li>Your cart is empty.</li>';
             }
-
             const allUniqueTestIdsInCart = new Set();
-
             globalCart.forEach(item => {
                 const price = getItemPrice(item.type, item.id);
                 const name = getItemName(item.type, item.id);
-
                 listEl.innerHTML += `
                     <li>
                         <span>${name} <small>(${item.type})</small></span>
                         <strong>₹${price}</strong>
                     </li>
                 `;
-                simpleTotal += price; // Simple sum
-
+                simpleTotal += price;
                 let testIds;
                 if (item.type === 'test') testIds = [item.id];
                 else if (item.type === 'profile') testIds = getTestIdsFromProfile(item.id);
                 else if (item.type === 'package') testIds = getTestIdsFromPackage(item.id);
-
                 if (testIds) testIds.forEach(tId => allUniqueTestIdsInCart.add(tId));
             });
-
             let accurateTotal = 0;
             allUniqueTestIdsInCart.forEach(tId => {
                 const test = findTest(tId);
                 if (test) accurateTotal += test.price;
             });
-
             if (globalCart.length > 0 && simpleTotal !== accurateTotal) {
-                listEl.innerHTML += `<li style="color: var(--primary-color);"><strong>Applied Discount (Overlapping Tests)</strong><strong>- ₹${simpleTotal - accurateTotal}</strong></li>`;
+                listEl.innerHTML += `<li style="color: var(--success-color);"><strong>Applied Discount (Overlapping Tests)</strong><strong>- ₹${simpleTotal - accurateTotal}</strong></li>`;
             }
             totalEl.textContent = `Total: ₹${accurateTotal}`;
             checkoutModal.style.display = 'block';
@@ -1668,20 +1782,17 @@
             const name = document.getElementById('form-name').value;
             const mobile = document.getElementById('form-mobile').value;
             const address = document.getElementById('form-address').value;
-
             if (!name || !mobile || !address) {
                 showSnackbar('Please fill in all required fields.', 'error');
                 return;
             }
-
-            console.log("--- ORDER PLACED (SIMULATION) ---");
-            console.log("Customer:", { name, mobile, address });
-            console.log("Cart Items:", globalCart);
-            console.log("Total Price:", document.getElementById('cart-total').textContent);
-
+            console.log("--- ORDER PLACED (SIMULATION) ---", {
+                customer: { name, mobile, address },
+                cart: globalCart,
+                total: document.getElementById('cart-total').textContent
+            });
             showSnackbar('Order Placed Successfully!', 'success');
-
-            globalCart = []; // Clear cart
+            globalCart = [];
             updateCartCount();
             closeCheckoutModal();
         }
@@ -1692,7 +1803,6 @@
             const customerView = document.getElementById('customer-view');
             const toggleBtn = document.getElementById('toggle-view-btn');
 
-            // --- View Toggler ---
             toggleBtn.addEventListener('click', () => {
                 if (adminView.style.display !== 'none') {
                     renderCustomerView();
@@ -1714,21 +1824,18 @@
                 }
             });
 
-            // --- Admin Modal Listeners ---
+            // --- Modal Listeners ---
             document.getElementById('close-admin-modal-btn').onclick = closeAdminModal;
             document.getElementById('admin-modal-cancel-btn').onclick = closeAdminModal;
-
-            // --- Details Modal Listeners ---
             document.getElementById('close-details-modal-btn').onclick = closeDetailsModal;
             document.getElementById('details-modal-close-btn').onclick = closeDetailsModal;
 
-            // --- Checkout Modal Listeners ---
-            cartBtn.addEventListener('click', openCheckoutModal);
+            // --- Checkout Modal ListenERS (Cart button listener removed from here) ---
             document.getElementById('close-checkout-modal-btn').onclick = closeCheckoutModal;
             document.getElementById('checkout-cancel-btn').onclick = closeCheckoutModal;
             document.getElementById('checkout-submit-btn').addEventListener('click', placeOrder);
 
-            // --- Admin Button Listeners (Event Delegation) ---
+            // --- Event Delegation ---
             adminView.addEventListener('click', (e) => {
                 const target = e.target.closest('button[data-action]');
                 if (!target) return;
@@ -1737,9 +1844,8 @@
                 if (action) openAdminModal(action, id);
             });
 
-            // --- Customer Button Listeners (Event Delegation) ---
             customerView.addEventListener('click', (e) => {
-                const target = e.target.closest('button[data-action]');
+                const target = e.target.closest('[data-action]'); // Can be button or category card
                 if (!target) return;
 
                 const action = target.dataset.action;
@@ -1751,6 +1857,12 @@
                 }
                 if (action === 'viewDetails') {
                     openDetailsModal(type, id);
+                }
+                if (action === 'searchCategory') {
+                    const query = target.dataset.query;
+                    searchBar.value = query;
+                    handleSearch();
+                    searchBar.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 }
             });
 
