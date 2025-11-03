@@ -1,0 +1,1767 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToplLabsBazaar.com</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+
+    <style>
+        :root {
+            /* Material 3 Inspired Color Palette */
+            --primary-color: #386a20;
+            /* Dark Green */
+            --primary-container: #b9f396;
+            --on-primary-container: #002200;
+            --secondary-color: #55624c;
+            --tertiary-color: #386666;
+            --bg-color: #f8fbf4;
+            --card-bg: #ffffff;
+            --border-color: #dce5d6;
+            --shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 2px 4px rgba(0, 0, 0, 0.05);
+            --shadow-hover: 0 4px 8px rgba(0, 0, 0, 0.07), 0 2px 6px rgba(0, 0, 0, 0.06);
+            --radius-md: 12px;
+            --radius-lg: 16px;
+        }
+
+        /* --- Global Styles --- */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: #1a1c18;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            color: var(--secondary-color);
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Helper class to align icons with text */
+        .icon-text {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .icon-text .material-symbols-outlined {
+            font-size: 1.25em;
+            /* 20px if base is 16px */
+        }
+
+        /* --- Buttons (Material 3 Style) --- */
+        button {
+            cursor: pointer;
+            border: none;
+            border-radius: var(--radius-md);
+            padding: 10px 16px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            -webkit-tap-highlight-color: transparent;
+            /* For mobile */
+        }
+
+        .btn {
+            padding: 10px 16px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+            box-shadow: var(--shadow);
+        }
+
+        .btn-primary:hover {
+            background-color: #2a5018;
+            /* Darker green */
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary-color);
+            color: white;
+            box-shadow: var(--shadow);
+        }
+
+        .btn-secondary:hover {
+            background-color: #40493b;
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-1px);
+        }
+
+        .btn-tertiary {
+            background-color: #f0f4ec;
+            color: var(--primary-color);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-tertiary:hover {
+            background-color: #e4e9e1;
+        }
+
+        .btn-edit {
+            background-color: #ffc107;
+            color: #333;
+            padding: 6px 12px;
+            font-size: 13px;
+        }
+
+        .btn-green {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-green:hover {
+            background-color: #2a5018;
+        }
+
+        .price {
+            font-size: 1.25em;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        /* --- App Toolbar --- */
+        .app-toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background: var(--card-bg);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            border-radius: var(--radius-lg);
+        }
+
+        .app-toolbar .logo {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .app-toolbar .controls button {
+            margin-left: 10px;
+        }
+
+        /* --- Card Styles --- */
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            transition: all 0.2s ease-out;
+        }
+
+        .card:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-2px);
+        }
+
+        /* --- Admin View (Responsive) --- */
+        #admin-view .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 25px;
+        }
+
+        .column {
+            background: var(--card-bg);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+            padding: 25px;
+        }
+
+        .column-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .item-card {
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 15px;
+            margin-bottom: 15px;
+            background: #fafcfa;
+        }
+
+        .item-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .item-card-header h3 {
+            margin: 0;
+            font-size: 1.1em;
+        }
+
+        .item-card-body ul {
+            list-style: none;
+            padding-left: 10px;
+            margin: 10px 0 0 0;
+        }
+
+        .item-card-body li {
+            color: #40493b;
+            font-size: 0.9em;
+            padding: 4px 0;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .item-card-body li::before {
+            content: "chevron_right";
+            font-family: 'Material Symbols Outlined';
+            font-size: 14px;
+            color: var(--primary-color);
+        }
+
+        .item-card-body .test-price {
+            font-weight: 600;
+            color: #444;
+        }
+
+        /* --- Customer View (Responsive) --- */
+        #customer-view h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        /* Search Bar */
+        .search-container {
+            max-width: 800px;
+            margin: 0 auto 30px auto;
+            position: relative;
+        }
+
+        #search-bar {
+            width: 100%;
+            padding: 16px 50px 16px 20px;
+            /* Space for icon */
+            font-size: 1.1em;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow);
+            box-sizing: border-box;
+        }
+
+        #search-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #888;
+        }
+
+        #clear-search-btn {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.2em;
+            color: #888;
+            background: none;
+            display: none;
+        }
+
+        /* Search Results */
+        #search-results-container {
+            display: none;
+        }
+
+        .search-result-card {
+            background: var(--card-bg);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow);
+            padding: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .search-result-card .info {
+            flex-grow: 1;
+        }
+
+        .search-result-card .info h3 {
+            margin: 0;
+            color: var(--primary-color);
+        }
+
+        .search-result-card .info p {
+            margin: 5px 0 0 0;
+            color: #555;
+        }
+
+        .search-result-card .info .badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-size: 0.8em;
+            font-weight: 600;
+            color: white;
+            margin-right: 10px;
+        }
+
+        .badge-test {
+            background-color: var(--tertiary-color);
+        }
+
+        .badge-profile {
+            background-color: var(--secondary-color);
+        }
+
+        .badge-package {
+            background-color: var(--primary-color);
+        }
+
+        .search-result-card .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        /* Package Grid */
+        #package-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .package-display-card {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .package-display-card .card-content {
+            padding: 25px;
+            flex-grow: 1;
+        }
+
+        .package-display-card .card-content h3 {
+            font-size: 1.4em;
+            color: var(--primary-color);
+        }
+
+        .package-display-card .card-content .details {
+            margin: 15px 0;
+            font-size: 0.95em;
+            color: #666;
+        }
+
+        .package-display-card .card-footer {
+            padding: 20px 25px;
+            background: #fdfdfd;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* --- Modal Styles --- */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.6);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 8% auto;
+            padding: 0;
+            border-radius: var(--radius-lg);
+            width: 90%;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            animation: slideIn 0.4s ease-out;
+        }
+
+        .modal-content-admin {
+            max-width: 700px;
+        }
+
+        .modal-content-checkout {
+            max-width: 700px;
+        }
+
+        .modal-content-details {
+            max-width: 800px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+            }
+
+            to {
+                opacity: 0;
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideOut {
+            from {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            to {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 30px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .modal-header h2 {
+            margin: 0;
+        }
+
+        .close-btn {
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .modal-body {
+            padding: 30px;
+            max-height: 60vh;
+            overflow-y: auto;
+        }
+
+        .modal-footer {
+            padding: 20px 30px;
+            border-top: 1px solid var(--border-color);
+            text-align: right;
+            background: #f9f9f9;
+        }
+
+        .modal-footer button {
+            margin-left: 10px;
+        }
+
+        /* Admin Modal */
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            font-size: 1em;
+            background: #fdfdfd;
+        }
+
+        .mapping-container {
+            max-height: 200px;
+            overflow-y: auto;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 15px;
+        }
+
+        .mapping-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .mapping-item:last-child {
+            border-bottom: none;
+        }
+
+        .mapping-item input[type="checkbox"] {
+            margin-right: 15px;
+            width: 18px;
+            height: 18px;
+        }
+
+        .modal-tabs {
+            display: flex;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .tab-link {
+            padding: 12px 20px;
+            cursor: pointer;
+            background: #f1f1f1;
+            border: 1px solid var(--border-color);
+            border-bottom: none;
+            margin-right: 5px;
+            border-radius: 6px 6px 0 0;
+        }
+
+        .tab-link.active {
+            background: var(--card-bg);
+            border-bottom: 1px solid var(--card-bg);
+            position: relative;
+            top: 1px;
+        }
+
+        .tab-content {
+            display: none;
+            padding-top: 20px;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Customer Details Modal */
+        #details-modal-body .detail-section {
+            margin-bottom: 25px;
+        }
+
+        #details-modal-body .detail-section h3 {
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        #details-modal-body .detail-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        #details-modal-body .detail-list li {
+            padding: 12px;
+            background: #f9f9f9;
+            border: 1px solid #eee;
+            border-radius: var(--radius-md);
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        #details-modal-body .detail-list li .test-price {
+            font-weight: 600;
+        }
+
+        #details-modal-body p {
+            color: #333;
+        }
+
+        /* Checkout Form (Responsive) */
+        #checkout-form-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        #cart-summary-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        #cart-summary-list li {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        #cart-total {
+            text-align: right;
+            font-size: 1.4em;
+            font-weight: 700;
+            margin-top: 20px;
+        }
+
+        /* --- Snackbar/Toast --- */
+        .snackbar {
+            visibility: hidden;
+            min-width: 250px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: var(--radius-md);
+            padding: 16px;
+            position: fixed;
+            z-index: 2000;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 30px;
+            font-size: 1em;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .snackbar.success {
+            background-color: var(--primary-color);
+        }
+
+        .snackbar.error {
+            background-color: #d32f2f;
+        }
+
+        .snackbar.show {
+            visibility: visible;
+            animation: snackbar-in 0.5s ease;
+        }
+
+        .snackbar.hide {
+            animation: snackbar-out 0.5s ease forwards;
+        }
+
+        @keyframes snackbar-in {
+            from {
+                bottom: -50px;
+                opacity: 0;
+            }
+
+            to {
+                bottom: 30px;
+                opacity: 1;
+            }
+        }
+
+        @keyframes snackbar-out {
+            from {
+                bottom: 30px;
+                opacity: 1;
+            }
+
+            to {
+                bottom: -50px;
+                opacity: 0;
+            }
+        }
+
+        /* --- Responsive Media Queries --- */
+        @media (min-width: 600px) {
+
+            /* Make checkout form 2 columns on desktop */
+            #checkout-form-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+
+            /* Stack search results actions on mobile */
+            .search-result-card {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .app-toolbar {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .modal-content {
+                margin: 5% auto;
+                width: 95%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="app-toolbar">
+        <div class="logo icon-text">
+            <span class="material-symbols-outlined">health_and_safety</span>
+            ToplLabsBazaar.com
+        </div>
+        <div class="controls">
+            <button id="toggle-view-btn" class="btn-secondary icon-text">
+                <span class="material-symbols-outlined">visibility</span>
+                Show Customer View
+            </button>
+            <button id="cart-btn" class="btn-primary icon-text" style="display: none;">
+                <span class="material-symbols-outlined">shopping_bag</span>
+                Cart (0)
+            </button>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div id="admin-view">
+            <div class="dashboard-grid">
+                <div class="column">
+                    <div class="column-header">
+                        <h2>Master Tests</h2>
+                        <button class="btn-primary icon-text" data-action="addTest">
+                            <span class="material-symbols-outlined">add</span>
+                            Add Test
+                        </button>
+                    </div>
+                    <div id="tests-list"></div>
+                </div>
+
+                <div class="column">
+                    <div class="column-header">
+                        <h2>Master Profiles</h2>
+                        <button class="btn-primary icon-text" data-action="addProfile">
+                            <span class="material-symbols-outlined">add</span>
+                            Add Profile
+                        </button>
+                    </div>
+                    <div id="profiles-list"></div>
+                </div>
+
+                <div class="column">
+                    <div class="column-header">
+                        <h2>Packages (Products)</h2>
+                        <button class="btn-primary icon-text" data-action="addPackage">
+                            <span class="material-symbols-outlined">add</span>
+                            Add Package
+                        </button>
+                    </div>
+                    <div id="packages-list"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="customer-view" style="display: none;">
+
+            <div class="search-container">
+                <span id="search-icon" class="material-symbols-outlined">search</span>
+                <input type="text" id="search-bar" placeholder="Search for any test, profile, or package...">
+                <button id="clear-search-btn" class="icon-text">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+
+            <div id="search-results-container">
+            </div>
+
+            <div id="featured-packages-container">
+                <h1>Featured Health Packages</h1>
+                <div id="package-grid">
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="admin-modal" class="modal">
+        <div class="modal-content modal-content-admin">
+            <div class="modal-header">
+                <h2 id="admin-modal-title" class="icon-text">
+                    <span class="material-symbols-outlined">edit_note</span>
+                    Edit Item
+                </h2>
+                <span id="close-admin-modal-btn" class="close-btn">&times;</span>
+            </div>
+            <div class="modal-body" id="admin-modal-body">
+            </div>
+            <div class="modal-footer">
+                <button class="btn-tertiary" id="admin-modal-cancel-btn">Cancel</button>
+                <button class="btn-primary icon-text" id="admin-modal-save-btn">
+                    <span class="material-symbols-outlined">save</span>
+                    Save
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="details-modal" class="modal">
+        <div class="modal-content modal-content-details">
+            <div class="modal-header">
+                <h2 id="details-modal-title" class="icon-text">
+                    <span class="material-symbols-outlined">article</span>
+                    Item Details
+                </h2>
+                <span id="close-details-modal-btn" class="close-btn">&times;</span>
+            </div>
+            <div class="modal-body" id="details-modal-body">
+            </div>
+            <div class="modal-footer">
+                <button class="btn-primary" id="details-modal-close-btn">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="checkout-modal" class="modal">
+        <div class="modal-content modal-content-checkout">
+            <div class="modal-header">
+                <h2 class="icon-text">
+                    <span class="material-symbols-outlined">shopping_cart_checkout</span>
+                    Your Cart & Checkout
+                </h2>
+                <span id="close-checkout-modal-btn" class="close-btn">&times;</span>
+            </div>
+            <div class="modal-body">
+                <h3>Order Summary</h3>
+                <ul id="cart-summary-list">
+                </ul>
+                <div id="cart-total">Total: ₹0</div>
+
+                <h3 style="margin-top: 30px;">Patient & Address Details</h3>
+                <form id="checkout-form">
+                    <div id="checkout-form-grid">
+                        <div class="form-group full-width">
+                            <label for="form-name">Full Name</label>
+                            <input type="text" id="form-name" required placeholder="Enter full name">
+                        </div>
+                        <div class="form-group">
+                            <label for="form-mobile">Mobile Number</label>
+                            <input type="text" id="form-mobile" required placeholder="Enter 10-digit mobile number">
+                        </div>
+                        <div class="form-group">
+                            <label for="form-email">Email</label>
+                            <input type="text" id="form-email" placeholder="Enter email (optional)">
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="form-address">Full Address</label>
+                            <textarea id="form-address" rows="3" required
+                                placeholder="Enter house no, street, city, pincode"></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" id="checkout-cancel-btn">Cancel</button>
+                <button class="btn-green icon-text" id="checkout-submit-btn">
+                    <span class="material-symbols-outlined">check_circle</span>
+                    Place Order
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        // --- 1. GLOBAL "DATABASE" (Rich Data) ---
+        let appDatabase = {
+            tests: [
+                { id: "t1", name: "Complete Blood Count (CBC)", params: "24 parameters", price: 300, description: "Measures different components of your blood, including red blood cells, white blood cells, and platelets. Helps detect a wide range of disorders, including anemia, infection, and leukemia.", who_is_it_for: "Everyone, as part of a routine checkup.", sample_type: "Blood", fasting_required: false },
+                { id: "t2", name: "Blood Sugar (Fasting)", params: "FBS", price: 100, description: "Measures the glucose (sugar) level in your blood after an overnight fast. Used to screen for and diagnose diabetes.", who_is_it_for: "Individuals at risk for diabetes, or as part of a routine checkup.", sample_type: "Blood", fasting_required: true },
+                { id: "t3", name: "Blood Sugar (Post-Prandial)", params: "PPBS", price: 100, description: "Measures blood glucose exactly 2 hours after eating a meal. Helps to see how your body responds to sugar and starch.", who_is_it_for: "Patients diagnosed with diabetes to monitor their sugar control.", sample_type: "Blood", fasting_required: false },
+                { id: "t4", name: "HbA1c", params: "Glycosylated Hemoglobin", price: 400, description: "Provides an average of your blood sugar control over the past 2 to 3 months. It's a key test for managing diabetes.", who_is_it_for: "Diabetics and pre-diabetics.", sample_type: "Blood", fasting_required: false },
+                { id: "t5", name: "Total Cholesterol", params: "TC", price: 150, description: "Measures the total amount of cholesterol in your blood.", who_is_it_for: "Adults as part of a heart risk assessment.", sample_type: "Blood", fasting_required: true },
+                { id: "t6", name: "Triglycerides", params: "TG", price: 150, description: "Measures the level of triglycerides, a type of fat, in your blood. High levels are associated with heart disease.", who_is_it_for: "Adults as part of a heart risk assessment.", sample_type: "Blood", fasting_required: true },
+                { id: "t7", name: "HDL Cholesterol", params: "Good Cholesterol", price: 150, description: "Measures the 'good' cholesterol (High-Density Lipoprotein). HDL helps remove other forms of cholesterol from your bloodstream.", who_is_it_for: "Adults as part of a heart risk assessment.", sample_type: "Blood", fasting_required: true },
+                { id: "t8", name: "LDL Cholesterol", params: "Bad Cholesterol", price: 150, description: "Measures the 'bad' cholesterol (Low-Density Lipoprotein). High levels can lead to plaque buildup in arteries.", who_is_it_for: "Adults as part of a heart risk assessment.", sample_type: "Blood", fasting_required: true },
+                { id: "t9", name: "Serum Creatinine", params: "Kidney Function", price: 180, description: "Measures the level of creatinine in the blood, a waste product from muscle activity. Helps evaluate kidney function.", who_is_it_for: "Patients with kidney disease, diabetes, or high blood pressure.", sample_type: "Blood", fasting_required: false },
+                { id: "t10", name: "Blood Urea Nitrogen (BUN)", params: "Kidney Function", price: 150, description: "Measures the amount of urea nitrogen in your blood. Urea is a waste product filtered by the kidneys.", who_is_it_for: "To assess kidney health.", sample_type: "Blood", fasting_required: false },
+                { id: "t11", name: "Bilirubin (Total)", params: "Jaundice", price: 150, description: "Measures the amount of bilirubin in the blood. High levels can indicate liver damage, disease, or certain types of anemia.", who_is_it_for: "To check for liver problems or gallbladder issues.", sample_type: "Blood", fasting_required: false },
+                { id: "t12", name: "SGPT (ALT)", params: "Liver Enzyme", price: 150, description: "Measures the enzyme Alanine Transaminase (ALT). High levels often indicate liver inflammation or damage.", who_is_it_for: "To screen for liver disease, hepatitis, or side effects of medication.", sample_type: "Blood", fasting_required: false },
+                { id: "t13", name: "SGOT (AST)", params: "Liver Enzyme", price: 150, description: "Measures the enzyme Aspartate Transaminase (AST). High levels can indicate liver or muscle damage.", who_is_it_for: "To screen for liver disease.", sample_type: "Blood", fasting_required: false },
+                { id: "t14", name: "T3 (Total)", params: "Triiodothyronine", price: 250, description: "Measures the level of the thyroid hormone T3. Helps diagnose hyperthyroidism.", who_is_it_for: "Individuals with symptoms of thyroid disorders.", sample_type: "Blood", fasting_required: false },
+                { id: "t15", name: "T4 (Total)", params: "Thyroxine", price: 250, description: "Measures the level of the main thyroid hormone T4. Helps diagnose hyperthyroidism and hypothyroidism.", who_is_it_for: "Individuals with symptoms of thyroid disorders.", sample_type: "Blood", fasting_required: false },
+                { id: "t16", name: "TSH", params: "Thyroid Stimulating Hormone", price: 300, description: "Measures the Thyroid-Stimulating Hormone. It's the most sensitive test for diagnosing thyroid disorders.", who_is_it_for: "Primary screening test for thyroid function.", sample_type: "Blood", fasting_required: false },
+                { id: "t17", name: "Vitamin D (25-OH)", params: "Vit D", price: 800, description: "Measures the level of Vitamin D in your blood, which is essential for bone health.", who_is_it_for: "People with symptoms of deficiency, low sun exposure, or osteoporosis.", sample_type: "Blood", fasting_required: false },
+                { id: "t18", name: "Vitamin B12", params: "B12", price: 700, description: "Measures Vitamin B12 levels, crucial for nerve function and the formation of red blood cells.", who_is_it_for: "Vegetarians, vegans, or people with symptoms of anemia or neuropathy.", sample_type: "Blood", fasting_required: false }
+            ],
+            profiles: [
+                { id: "p1", name: "Diabetic Profile (Mini)", testIds: ["t2", "t3"], description: "A basic screening profile to check your blood sugar levels before and after a meal.", who_is_it_for: "Initial screening for diabetes or pre-diabetes." },
+                { id: "p2", name: "Diabetic Profile (Advanced)", testIds: ["t2", "t3", "t4"], description: "A comprehensive check for diabetes, including fasting, post-meal, and your 3-month average (HbA1c).", who_is_it_for: "Individuals managing diabetes or at high risk." },
+                { id: "p3", name: "Lipid Profile (Full)", testIds: ["t5", "t6", "t7", "t8"], description: "A complete panel to assess your risk for heart disease. Measures total, good (HDL), and bad (LDL) cholesterol, plus triglycerides.", who_is_it_for: "All adults, especially those with lifestyle risk factors." },
+                { id: "p4", name: "Kidney Function Test (KFT)", testIds: ["t9", "t10"], description: "Evaluates the health and function of your kidneys by measuring key waste products, Creatinine and Urea.", who_is_it_for: "Patients with diabetes, high blood pressure, or a family history of kidney disease." },
+                { id: "p5", name: "Liver Function Test (LFT)", testIds: ["t11", "t12", "t13"], description: "A panel of tests to check for liver inflammation or damage. Measures Bilirubin and key liver enzymes (SGPT, SGOT).", who_is_it_for: "To check for liver disease, or monitor medication side effects." },
+                { id: "p6", name: "Thyroid Profile (T3, T4, TSH)", testIds: ["t14", "t15", "t16"], description: "A complete evaluation of thyroid gland function, essential for regulating metabolism.", who_is_it_for: "Individuals with symptoms like fatigue, weight gain/loss, or hair fall." }
+            ],
+            packages: [
+                {
+                    id: "pkg1",
+                    name: "Basic Health Checkup",
+                    profileIds: ["p3", "p4"], // Lipid + Kidney
+                    testIds: ["t1", "t2"],     // + CBC + Fasting Sugar
+                    description: "Our essential package covers the fundamentals of your health, including blood counts, kidney function, heart risk (Lipid Profile), and diabetes screening.",
+                    who_is_it_for: "Adults under 30 or anyone looking for a routine annual checkup."
+                },
+                {
+                    id: "pkg2",
+                    name: "Advanced Full Body Checkup",
+                    profileIds: ["p3", "p4", "p5", "p6"], // Lipid + Kidney + Liver + Thyroid
+                    testIds: ["t1", "t4", "t17", "t18"], // + CBC + HbA1c + Vit D + Vit B12
+                    description: "A comprehensive, 360-degree view of your health. This package includes everything in the Basic check, plus advanced diabetes (HbA1c), liver, thyroid, and key vitamin tests.",
+                    who_is_it_for: "Adults over 30 or anyone wanting a deep dive into their health status."
+                },
+                {
+                    id: "pkg3",
+                    name: "Diabetic Care Package",
+                    profileIds: ["p2", "p3", "p4"], // Diabetic (Advanced) + Lipid + Kidney
+                    testIds: [], // No extra individual tests
+                    description: "A specialized package designed for individuals managing diabetes. It tracks your 3-month sugar average (HbA1c) and monitors potential complications in the kidneys (KFT) and heart (Lipid Profile).",
+                    who_is_it_for: "Diagnosed diabetics and pre-diabetics for regular monitoring."
+                }
+            ]
+        };
+
+        // --- 2. CUSTOMER CART ---
+        let globalCart = []; // e.g., [{ type: 'package', id: 'pkg1' }, { type: 'test', id: 't1' }]
+
+        // --- 3. UTILITY & PRICING LOGIC ---
+        const findTest = (id) => appDatabase.tests.find(t => t.id === id);
+        const findProfile = (id) => appDatabase.profiles.find(p => p.id === id);
+        const findPackage = (id) => appDatabase.packages.find(p => p.id === id);
+
+        function getTestIdsFromProfile(profileId) {
+            const profile = findProfile(profileId);
+            return profile ? new Set(profile.testIds) : new Set();
+        }
+
+        function getTestIdsFromPackage(packageId) {
+            const pkg = findPackage(packageId);
+            if (!pkg) return new Set();
+
+            const uniqueTestIds = new Set(pkg.testIds);
+            pkg.profileIds.forEach(pId => {
+                getTestIdsFromProfile(pId).forEach(tId => uniqueTestIds.add(tId));
+            });
+            return uniqueTestIds;
+        }
+
+        function getItemPrice(type, id, tempProfileIds = null, tempTestIds = null) {
+            let uniqueTestIds = new Set();
+
+            if (type === 'test') {
+                uniqueTestIds.add(id);
+            } else if (type === 'profile') {
+                uniqueTestIds = getTestIdsFromProfile(id);
+            } else if (type === 'package') {
+                uniqueTestIds = getTestIdsFromPackage(id);
+            } else if (type === null) {
+                // Used for live preview in admin modal
+                (tempTestIds || []).forEach(tId => uniqueTestIds.add(tId));
+                (tempProfileIds || []).forEach(pId => {
+                    getTestIdsFromProfile(pId).forEach(tId => uniqueTestIds.add(tId));
+                });
+            }
+
+            let totalPrice = 0;
+            uniqueTestIds.forEach(tId => {
+                const test = findTest(tId);
+                if (test) {
+                    totalPrice += test.price;
+                }
+            });
+            return totalPrice;
+        }
+
+        function getItemName(type, id) {
+            if (type === 'test') return findTest(id)?.name || 'Unknown Test';
+            if (type === 'profile') return findProfile(id)?.name || 'Unknown Profile';
+            if (type === 'package') return findPackage(id)?.name || 'Unknown Package';
+        }
+
+        // --- 4. NEW SNACKBAR/TOAST FUNCTION ---
+        function showSnackbar(message, type = 'success') {
+            // Remove any existing snackbar
+            const existingSnackbar = document.getElementById('snackbar');
+            if (existingSnackbar) {
+                existingSnackbar.remove();
+            }
+
+            const snackbar = document.createElement('div');
+            snackbar.id = 'snackbar';
+            snackbar.className = `snackbar ${type} show`;
+            snackbar.textContent = message;
+
+            document.body.appendChild(snackbar);
+
+            // After 3 seconds, add 'hide' class, then remove element
+            setTimeout(() => {
+                snackbar.className = snackbar.className.replace('show', 'hide');
+                setTimeout(() => {
+                    if (snackbar.parentNode) {
+                        snackbar.parentNode.removeChild(snackbar);
+                    }
+                }, 500); // Wait for fade out animation
+            }, 3000);
+        }
+
+        // --- 5. RENDER FUNCTIONS (ADMIN) ---
+        function renderTests() {
+            const list = document.getElementById('tests-list');
+            list.innerHTML = '';
+            appDatabase.tests.forEach(test => {
+                list.innerHTML += `
+                    <div class="item-card">
+                        <div class="item-card-header">
+                            <h3>${test.name}</h3>
+                            <button class="btn-edit icon-text" data-action="editTest" data-id="${test.id}">
+                                <span class="material-symbols-outlined" style="font-size: 16px;">edit</span>
+                                Edit
+                            </button>
+                        </div>
+                        <div class="item-card-body">
+                           <p class="test-price">₹${test.price}</p>
+                           <p style="font-size: 0.9em; color: #666; margin: 0;">(${test.params})</p>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function renderProfiles() {
+            const list = document.getElementById('profiles-list');
+            list.innerHTML = '';
+            appDatabase.profiles.forEach(profile => {
+                // --- NEW: Show all test names in admin ---
+                let testsHtml = '<ul>';
+                if (profile.testIds.length > 0) {
+                    profile.testIds.forEach(testId => {
+                        const test = findTest(testId);
+                        if (test) testsHtml += `<li>${test.name}</li>`;
+                    });
+                } else {
+                    testsHtml = "<ul><li>No tests mapped.</li></ul>";
+                }
+                testsHtml += '</ul>';
+
+                list.innerHTML += `
+                    <div class="item-card">
+                        <div class="item-card-header">
+                            <h3>${profile.name}</h3>
+                            <button class="btn-edit icon-text" data-action="editProfile" data-id="${profile.id}">
+                                <span class="material-symbols-outlined" style="font-size: 16px;">edit</span>
+                                Edit
+                            </button>
+                        </div>
+                        <div class="item-card-body">
+                            <h4 style="margin: 0 0 5px 0;">Includes (${profile.testIds.length} tests):</h4>
+                            ${testsHtml}
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function renderPackages() {
+            const list = document.getElementById('packages-list');
+            list.innerHTML = '';
+            appDatabase.packages.forEach(pkg => {
+                const calculatedPrice = getItemPrice('package', pkg.id);
+                let contentsHtml = '<ul>';
+                pkg.profileIds.forEach(pId => {
+                    const profile = findProfile(pId);
+                    if (profile) contentsHtml += `<li><b>${profile.name}</b> (${profile.testIds.length} tests)</li>`;
+                });
+                pkg.testIds.forEach(tId => {
+                    const test = findTest(tId);
+                    if (test) contentsHtml += `<li>${test.name} (Individual)</li>`;
+                });
+                contentsHtml += '</ul>';
+
+                list.innerHTML += `
+                    <div class="item-card">
+                        <div class="item-card-header">
+                            <h3>${pkg.name}</h3>
+                            <span class="price">₹${calculatedPrice}</span>
+                        </div>
+                        <div class="item-card-body">
+                            <h4 style="margin: 5px 0 5px 0;">Includes:</h4>
+                            ${contentsHtml}
+                        </div>
+                        <button class="btn-edit icon-text" data-action="editPackage" data-id="${pkg.id}" style="width: 100%; margin-top: 15px;">
+                            <span class="material-symbols-outlined" style="font-size: 16px;">edit</span>
+                            Edit Package & Mapping
+                        </button>
+                    </div>
+                `;
+            });
+        }
+
+        function renderAllAdmin() {
+            renderTests();
+            renderProfiles();
+            renderPackages();
+        }
+
+        // --- 6. RENDER FUNCTIONS (CUSTOMER) ---
+        function renderCustomerView() {
+            const grid = document.getElementById('package-grid');
+            grid.innerHTML = '';
+            if (appDatabase.packages.length === 0) {
+                grid.innerHTML = '<p>No featured packages are available.</p>';
+                return;
+            }
+
+            appDatabase.packages.forEach(pkg => {
+                const price = getItemPrice('package', pkg.id);
+                const uniqueTestIds = getTestIdsFromPackage(pkg.id);
+
+                grid.innerHTML += `
+                    <div class="package-display-card card">
+                        <div class="card-content">
+                            <h3>${pkg.name}</h3>
+                            <div class="details">
+                                Includes ${uniqueTestIds.size} unique tests.
+                            </div>
+                            <div class="price">₹${price}</div>
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn-tertiary icon-text" data-action="viewDetails" data-type="package" data-id="${pkg.id}">
+                                <span class="material-symbols-outlined">visibility</span>
+                                View Details
+                            </button>
+                            <button class="btn-green icon-text" data-action="addToCart" data-type="package" data-id="${pkg.id}">
+                                <span class="material-symbols-outlined">add_shopping_cart</span>
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        // --- 7. ADMIN MODAL LOGIC ---
+        const adminModal = document.getElementById('admin-modal');
+        const adminModalTitle = document.getElementById('admin-modal-title');
+        const adminModalBody = document.getElementById('admin-modal-body');
+        const adminModalSaveBtn = document.getElementById('admin-modal-save-btn');
+
+        function closeAdminModal() {
+            adminModal.style.display = 'none';
+            adminModalSaveBtn.onclick = null;
+        }
+
+        function openAdminModal(action, id = null) {
+            adminModalBody.innerHTML = ''; // Clear
+
+            let titleIcon = 'edit_note';
+            let titleText = 'Edit Item';
+
+            switch (action) {
+                // --- ADD/EDIT TEST ---
+                case 'addTest':
+                case 'editTest':
+                    const test = action === 'editTest' ? findTest(id) : null;
+                    titleText = test ? 'Edit Test' : 'Add New Test';
+                    adminModalBody.innerHTML = `
+                        <div class="form-group">
+                            <label for="form-test-name">Test Name</label>
+                            <input type="text" id="form-test-name" value="${test ? test.name : ''}" placeholder="e.g. Complete Blood Count (CBC)">
+                        </div>
+                        <div class="form-group">
+                            <label for="form-test-params">Parameters</label>
+                            <input type="text" id="form-test-params" value="${test ? test.params : ''}" placeholder="e.g. 24 parameters">
+                        </div>
+                        <div class="form-group">
+                            <label for="form-test-price">Price (₹)</label>
+                            <input type="number" id="form-test-price" value="${test ? test.price : ''}" placeholder="e.g. 300">
+                        </div>
+                    `;
+                    adminModalSaveBtn.onclick = () => saveTest(id);
+                    break;
+
+                // --- ADD/EDIT PROFILE ---
+                case 'addProfile':
+                case 'editProfile':
+                    const profile = action === 'editProfile' ? findProfile(id) : null;
+                    titleText = profile ? 'Edit Profile & Test Mapping' : 'Add New Profile';
+
+                    let testsHtml = appDatabase.tests.map(test => {
+                        const isChecked = profile ? profile.testIds.includes(test.id) : false;
+                        return `
+                            <div class="mapping-item">
+                                <input type="checkbox" class="mapping-checkbox" id="map-test-${test.id}" data-id="${test.id}" ${isChecked ? 'checked' : ''}>
+                                <label for="map-test-${test.id}">${test.name} (₹${test.price})</label>
+                            </div>
+                        `;
+                    }).join('');
+                    adminModalBody.innerHTML = `
+                        <div class="form-group">
+                            <label for="form-profile-name">Profile Name</label>
+                            <input type="text" id="form-profile-name" value="${profile ? profile.name : ''}" placeholder="e.g. Lipid Profile (Full)">
+                        </div>
+                        <div class="form-group">
+                            <label>Map Tests to this Profile</label>
+                            <div class="mapping-container">${testsHtml}</div>
+                        </div>
+                    `;
+                    adminModalSaveBtn.onclick = () => saveProfile(id);
+                    break;
+
+                // --- ADD/EDIT PACKAGE ---
+                case 'addPackage':
+                case 'editPackage':
+                    const pkg = action === 'editPackage' ? findPackage(id) : null;
+                    titleText = pkg ? 'Edit Package & Mapping' : 'Add New Package';
+
+                    let profilesHtml = appDatabase.profiles.map(p => {
+                        const isChecked = pkg ? pkg.profileIds.includes(p.id) : false;
+                        return `
+                            <div class="mapping-item">
+                                <input type="checkbox" class="mapping-checkbox" data-type="profile" id="map-profile-${p.id}" data-id="${p.id}" ${isChecked ? 'checked' : ''}>
+                                <label for="map-profile-${p.id}">${p.name} (${p.testIds.length} tests)</label>
+                            </div>
+                        `;
+                    }).join('');
+
+                    let individualTestsHtml = appDatabase.tests.map(t => {
+                        const isChecked = pkg ? pkg.testIds.includes(t.id) : false;
+                        return `
+                            <div class="mapping-item">
+                                <input type="checkbox" class="mapping-checkbox" data-type="test" id="map-test-${t.id}" data-id="${t.id}" ${isChecked ? 'checked' : ''}>
+                                <label for="map-test-${t.id}">${t.name} (₹${t.price})</label>
+                            </div>
+                        `;
+                    }).join('');
+
+                    adminModalBody.innerHTML = `
+                        <div class="modal-tabs">
+                            <span class="tab-link active" data-tab="tab-basic">Basic Info</span>
+                            <span class="tab-link" data-tab="tab-profiles">Map Profiles</span>
+                            <span class="tab-link" data-tab="tab-tests">Map Individual Tests</span>
+                        </div>
+                        
+                        <div id="tab-basic" class="tab-content active">
+                            <div class="form-group">
+                                <label for="form-package-name">Package Name</label>
+                                <input type="text" id="form-package-name" value="${pkg ? pkg.name : ''}" placeholder="e.g. Advanced Full Body Checkup">
+                            </div>
+                            <h3 style="margin-top: 20px;">Live Price Preview (Based on unique tests)</h3>
+                            <h2 id="live-price-preview" class="price">₹0</h2>
+                        </div>
+                        
+                        <div id="tab-profiles" class="tab-content">
+                            <div class="form-group">
+                                <label>Select Profiles to include:</label>
+                                <div class="mapping-container" id="profile-mapping-container">${profilesHtml}</div>
+                            </div>
+                        </div>
+
+                        <div id="tab-tests" class="tab-content">
+                            <div class="form-group">
+                                <label>Select Individual Tests to add:</label>
+                                <div class="mapping-container" id="test-mapping-container">${individualTestsHtml}</div>
+                            </div>
+                        </div>
+                    `;
+
+                    const pricePreviewEl = document.getElementById('live-price-preview');
+                    const updateLivePrice = () => {
+                        const mappedProfileIds = Array.from(document.querySelectorAll('#profile-mapping-container .mapping-checkbox:checked')).map(cb => cb.dataset.id);
+                        const mappedTestIds = Array.from(document.querySelectorAll('#test-mapping-container .mapping-checkbox:checked')).map(cb => cb.dataset.id);
+                        const newPrice = getItemPrice(null, null, mappedProfileIds, mappedTestIds);
+                        pricePreviewEl.textContent = `₹${newPrice}`;
+                    };
+
+                    adminModalBody.querySelectorAll('.mapping-checkbox').forEach(cb => cb.addEventListener('change', updateLivePrice));
+
+                    adminModalBody.querySelectorAll('.tab-link').forEach(link => {
+                        link.addEventListener('click', (e) => {
+                            adminModalBody.querySelectorAll('.tab-link').forEach(l => l.classList.remove('active'));
+                            adminModalBody.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                            e.target.classList.add('active');
+                            document.getElementById(e.target.dataset.tab).classList.add('active');
+                        });
+                    });
+
+                    updateLivePrice();
+                    adminModalSaveBtn.onclick = () => savePackage(id);
+                    break;
+            }
+
+            adminModalTitle.innerHTML = `<span class="material-symbols-outlined">${titleIcon}</span> ${titleText}`;
+            adminModal.style.display = 'block';
+        }
+
+        // --- 8. SAVE HANDLERS (ADMIN) ---
+        function saveTest(id) {
+            const name = document.getElementById('form-test-name').value;
+            const params = document.getElementById('form-test-params').value;
+            const price = parseInt(document.getElementById('form-test-price').value, 10);
+            if (!name || !price) {
+                showSnackbar('Test Name and Price are required.', 'error');
+                return;
+            }
+
+            if (id) {
+                const test = findTest(id);
+                test.name = name; test.params = params; test.price = price;
+            } else {
+                appDatabase.tests.push({ id: `t${Date.now()}`, name, params, price, description: "New test description.", who_is_it_for: "N/A", sample_type: "Blood", fasting_required: false });
+            }
+            renderAllAdmin();
+            renderCustomerView();
+            closeAdminModal();
+            showSnackbar(id ? 'Test Updated' : 'Test Added', 'success');
+        }
+
+        function saveProfile(id) {
+            const name = document.getElementById('form-profile-name').value;
+            if (!name) {
+                showSnackbar('Profile Name is required.', 'error');
+                return;
+            }
+            const mappedTestIds = Array.from(document.querySelectorAll('.mapping-container .mapping-checkbox:checked')).map(cb => cb.dataset.id);
+
+            if (id) {
+                const profile = findProfile(id);
+                profile.name = name; profile.testIds = mappedTestIds;
+            } else {
+                appDatabase.profiles.push({ id: `p${Date.now()}`, name, testIds: mappedTestIds, description: "New profile description.", who_is_it_for: "N/A" });
+            }
+            renderAllAdmin();
+            renderCustomerView();
+            closeAdminModal();
+            showSnackbar(id ? 'Profile Updated' : 'Profile Added', 'success');
+        }
+
+        function savePackage(id) {
+            const name = document.getElementById('form-package-name').value;
+            if (!name) {
+                showSnackbar('Package Name is required.', 'error');
+                return;
+            }
+
+            const mappedProfileIds = Array.from(document.querySelectorAll('#profile-mapping-container .mapping-checkbox:checked')).map(cb => cb.dataset.id);
+            const mappedTestIds = Array.from(document.querySelectorAll('#test-mapping-container .mapping-checkbox:checked')).map(cb => cb.dataset.id);
+
+            if (id) {
+                const pkg = findPackage(id);
+                pkg.name = name; pkg.profileIds = mappedProfileIds; pkg.testIds = mappedTestIds;
+            } else {
+                appDatabase.packages.push({ id: `pkg${Date.now()}`, name, profileIds: mappedProfileIds, testIds: mappedTestIds, description: "New package description.", who_is_it_for: "N/A" });
+            }
+            renderAllAdmin();
+            renderCustomerView();
+            closeAdminModal();
+            showSnackbar(id ? 'Package Updated' : 'Package Added', 'success');
+        }
+
+        // --- 9. CUSTOMER "VIEW DETAILS" MODAL ---
+        const detailsModal = document.getElementById('details-modal');
+        const detailsModalTitle = document.getElementById('details-modal-title');
+        const detailsModalBody = document.getElementById('details-modal-body');
+
+        function openDetailsModal(type, id) {
+            let item, title, titleIcon, html;
+
+            if (type === 'test') {
+                item = findTest(id);
+                title = item.name;
+                titleIcon = 'science';
+                html = `
+                    <div class="detail-section">
+                        <p>${item.description || 'No description available.'}</p>
+                        <ul class="detail-list">
+                            <li><span>Price</span> <span class="test-price">₹${item.price}</span></li>
+                            <li><span>Sample Type</span> <span>${item.sample_type || 'N/A'}</span></li>
+                            <li><span>Fasting Required</span> <span>${item.fasting_required ? 'Yes (8-10 hrs)' : 'No'}</span></li>
+                        </ul>
+                    </div>
+                    <div class="detail-section">
+                        <h3 class="icon-text"><span class="material-symbols-outlined">person</span>Who is this test for?</h3>
+                        <p>${item.who_is_it_for || 'Consult your doctor.'}</p>
+                    </div>
+                `;
+            } else if (type === 'profile') {
+                item = findProfile(id);
+                title = item.name;
+                titleIcon = 'collections_bookmark';
+                const price = getItemPrice('profile', id);
+                let testsHtml = item.testIds.map(tId => {
+                    const test = findTest(tId);
+                    return test ? `<li><span>${test.name}</span> <span class="test-price">₹${test.price}</span></li>` : '';
+                }).join('');
+
+                html = `
+                    <div class="detail-section">
+                        <p>${item.description || 'No description available.'}</p>
+                        <ul class="detail-list">
+                            <li><span>Total Price</span> <span class="test-price">₹${price}</span></li>
+                        </ul>
+                    </div>
+                    <div class="detail-section">
+                        <h3 class="icon-text"><span class="material-symbols-outlined">person</span>Who is this profile for?</h3>
+                        <p>${item.who_is_it_for || 'Consult your doctor.'}</p>
+                    </div>
+                    <div class="detail-section">
+                        <h3 class="icon-text"><span class="material-symbols-outlined">list_alt</span>Tests Included (${item.testIds.length})</h3>
+                        <ul class="detail-list">${testsHtml}</ul>
+                    </div>
+                `;
+            } else if (type === 'package') {
+                item = findPackage(id);
+                title = item.name;
+                titleIcon = 'inventory_2';
+                const price = getItemPrice('package', id);
+                const uniqueTestIds = getTestIdsFromPackage(id);
+
+                let profilesHtml = item.profileIds.map(pId => {
+                    const profile = findProfile(pId);
+                    return profile ? `<li><span>${profile.name} (${profile.testIds.length} tests)</span></li>` : '';
+                }).join('');
+
+                let testsHtml = item.testIds.map(tId => {
+                    const test = findTest(tId);
+                    return test ? `<li><span>${test.name} (Individual)</span></li>` : '';
+                }).join('');
+
+                html = `
+                    <div class="detail-section">
+                        <p>${item.description || 'No description available.'}</p>
+                        <ul class="detail-list">
+                            <li><span>Total Price</span> <span class="test-price">₹${price}</span></li>
+                            <li><span>Total Unique Tests</span> <span>${uniqueTestIds.size}</span></li>
+                        </ul>
+                    </div>
+                    <div class="detail-section">
+                        <h3 class="icon-text"><span class="material-symbols-outlined">person</span>Who is this package for?</h3>
+                        <p>${item.who_is_it_for || 'Consult your doctor.'}</p>
+                    </div>
+                    <div class="detail-section">
+                        <h3 class="icon-text"><span class="material-symbols-outlined">list_alt</span>Contents</h3>
+                        <ul class="detail-list">
+                            ${profilesHtml}
+                            ${testsHtml}
+                        </ul>
+                    </div>
+                `;
+            }
+
+            detailsModalTitle.innerHTML = `<span class="material-symbols-outlined">${titleIcon}</span> ${title}`;
+            detailsModalBody.innerHTML = html;
+            detailsModal.style.display = 'block';
+        }
+
+        function closeDetailsModal() {
+            detailsModal.style.display = 'none';
+        }
+
+        // --- 10. CUSTOMER SEARCH LOGIC ---
+        const searchBar = document.getElementById('search-bar');
+        const clearSearchBtn = document.getElementById('clear-search-btn');
+        const resultsContainer = document.getElementById('search-results-container');
+        const featuredContainer = document.getElementById('featured-packages-container');
+
+        function handleSearch() {
+            const term = searchBar.value.toLowerCase().trim();
+            clearSearchBtn.style.display = term.length > 0 ? 'block' : 'none';
+
+            if (term.length < 2) {
+                resultsContainer.style.display = 'none';
+                featuredContainer.style.display = 'block';
+                resultsContainer.innerHTML = '';
+                return;
+            }
+
+            resultsContainer.style.display = 'block';
+            featuredContainer.style.display = 'none';
+            resultsContainer.innerHTML = '';
+
+            const tests = appDatabase.tests.filter(t => t.name.toLowerCase().includes(term));
+            const profiles = appDatabase.profiles.filter(p => p.name.toLowerCase().includes(term));
+            const packages = appDatabase.packages.filter(p => p.name.toLowerCase().includes(term));
+
+            let resultsHtml = '';
+
+            tests.forEach(item => {
+                resultsHtml += `
+                    <div class="search-result-card">
+                        <div class="info">
+                            <span class="badge badge-test">Test</span>
+                            <h3>${item.name}</h3>
+                            <p>Price: ₹${item.price}</p>
+                        </div>
+                        <div class="actions">
+                            <button class="btn-tertiary icon-text" data-action="viewDetails" data-type="test" data-id="${item.id}">
+                                <span class="material-symbols-outlined">visibility</span> View
+                            </button>
+                            <button class="btn-green icon-text" data-action="addToCart" data-type="test" data-id="${item.id}">
+                                <span class="material-symbols-outlined">add_shopping_cart</span> Add
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            profiles.forEach(item => {
+                const price = getItemPrice('profile', item.id);
+                resultsHtml += `
+                    <div class="search-result-card">
+                        <div class="info">
+                            <span class="badge badge-profile">Profile</span>
+                            <h3>${item.name}</h3>
+                            <p>Includes ${item.testIds.length} tests • Price: ₹${price}</p>
+                        </div>
+                        <div class="actions">
+                            <button class="btn-tertiary icon-text" data-action="viewDetails" data-type="profile" data-id="${item.id}">
+                                <span class="material-symbols-outlined">visibility</span> View
+                            </button>
+                            <button class="btn-green icon-text" data-action="addToCart" data-type="profile" data-id="${item.id}">
+                                <span class="material-symbols-outlined">add_shopping_cart</span> Add
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            packages.forEach(item => {
+                const price = getItemPrice('package', item.id);
+                const testCount = getTestIdsFromPackage(item.id).size;
+                resultsHtml += `
+                    <div class="search-result-card">
+                        <div class="info">
+                            <span class="badge badge-package">Package</span>
+                            <h3>${item.name}</h3>
+                            <p>Includes ${testCount} unique tests • Price: ₹${price}</p>
+                        </div>
+                        <div class="actions">
+                            <button class="btn-tertiary icon-text" data-action="viewDetails" data-type="package" data-id="${item.id}">
+                                <span class="material-symbols-outlined">visibility</span> View
+                            </button>
+                            <button class="btn-green icon-text" data-action="addToCart" data-type="package" data-id="${item.id}">
+                                <span class="material-symbols-outlined">add_shopping_cart</span> Add
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            if (resultsHtml === '') {
+                resultsContainer.innerHTML = '<p style="text-align: center;">No results found.</p>';
+            } else {
+                resultsContainer.innerHTML = resultsHtml;
+            }
+        }
+
+        function clearSearch() {
+            searchBar.value = '';
+            handleSearch();
+        }
+
+        // --- 11. CUSTOMER CART & CHECKOUT LOGIC ---
+        const cartBtn = document.getElementById('cart-btn');
+        const checkoutModal = document.getElementById('checkout-modal');
+
+        function updateCartCount() {
+            cartBtn.innerHTML = `
+                <span class="material-symbols-outlined">shopping_bag</span>
+                Cart (${globalCart.length})
+            `;
+        }
+
+        function addToCart(type, id) {
+            globalCart.push({ type, id });
+            updateCartCount();
+            showSnackbar(`${getItemName(type, id)} added to cart!`, 'success');
+        }
+
+        function openCheckoutModal() {
+            const listEl = document.getElementById('cart-summary-list');
+            const totalEl = document.getElementById('cart-total');
+            listEl.innerHTML = '';
+            let simpleTotal = 0;
+
+            if (globalCart.length === 0) {
+                listEl.innerHTML = '<li>Your cart is empty.</li>';
+            }
+
+            const allUniqueTestIdsInCart = new Set();
+
+            globalCart.forEach(item => {
+                const price = getItemPrice(item.type, item.id);
+                const name = getItemName(item.type, item.id);
+
+                listEl.innerHTML += `
+                    <li>
+                        <span>${name} <small>(${item.type})</small></span>
+                        <strong>₹${price}</strong>
+                    </li>
+                `;
+                simpleTotal += price; // Simple sum
+
+                let testIds;
+                if (item.type === 'test') testIds = [item.id];
+                else if (item.type === 'profile') testIds = getTestIdsFromProfile(item.id);
+                else if (item.type === 'package') testIds = getTestIdsFromPackage(item.id);
+
+                if (testIds) testIds.forEach(tId => allUniqueTestIdsInCart.add(tId));
+            });
+
+            let accurateTotal = 0;
+            allUniqueTestIdsInCart.forEach(tId => {
+                const test = findTest(tId);
+                if (test) accurateTotal += test.price;
+            });
+
+            if (globalCart.length > 0 && simpleTotal !== accurateTotal) {
+                listEl.innerHTML += `<li style="color: var(--primary-color);"><strong>Applied Discount (Overlapping Tests)</strong><strong>- ₹${simpleTotal - accurateTotal}</strong></li>`;
+            }
+            totalEl.textContent = `Total: ₹${accurateTotal}`;
+            checkoutModal.style.display = 'block';
+        }
+
+        function closeCheckoutModal() {
+            checkoutModal.style.display = 'none';
+        }
+
+        function placeOrder() {
+            const name = document.getElementById('form-name').value;
+            const mobile = document.getElementById('form-mobile').value;
+            const address = document.getElementById('form-address').value;
+
+            if (!name || !mobile || !address) {
+                showSnackbar('Please fill in all required fields.', 'error');
+                return;
+            }
+
+            console.log("--- ORDER PLACED (SIMULATION) ---");
+            console.log("Customer:", { name, mobile, address });
+            console.log("Cart Items:", globalCart);
+            console.log("Total Price:", document.getElementById('cart-total').textContent);
+
+            showSnackbar('Order Placed Successfully!', 'success');
+
+            globalCart = []; // Clear cart
+            updateCartCount();
+            closeCheckoutModal();
+        }
+
+        // --- 12. APP INITIALIZATION & EVENT LISTENERS ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const adminView = document.getElementById('admin-view');
+            const customerView = document.getElementById('customer-view');
+            const toggleBtn = document.getElementById('toggle-view-btn');
+
+            // --- View Toggler ---
+            toggleBtn.addEventListener('click', () => {
+                if (adminView.style.display !== 'none') {
+                    renderCustomerView();
+                    adminView.style.display = 'none';
+                    customerView.style.display = 'block';
+                    cartBtn.style.display = 'inline-flex';
+                    toggleBtn.innerHTML = `
+                        <span class="material-symbols-outlined">admin_panel_settings</span>
+                        Show Admin Panel
+                    `;
+                } else {
+                    adminView.style.display = 'block';
+                    customerView.style.display = 'none';
+                    cartBtn.style.display = 'none';
+                    toggleBtn.innerHTML = `
+                        <span class="material-symbols-outlined">visibility</span>
+                        Show Customer View
+                    `;
+                }
+            });
+
+            // --- Admin Modal Listeners ---
+            document.getElementById('close-admin-modal-btn').onclick = closeAdminModal;
+            document.getElementById('admin-modal-cancel-btn').onclick = closeAdminModal;
+
+            // --- Details Modal Listeners ---
+            document.getElementById('close-details-modal-btn').onclick = closeDetailsModal;
+            document.getElementById('details-modal-close-btn').onclick = closeDetailsModal;
+
+            // --- Checkout Modal Listeners ---
+            cartBtn.addEventListener('click', openCheckoutModal);
+            document.getElementById('close-checkout-modal-btn').onclick = closeCheckoutModal;
+            document.getElementById('checkout-cancel-btn').onclick = closeCheckoutModal;
+            document.getElementById('checkout-submit-btn').addEventListener('click', placeOrder);
+
+            // --- Admin Button Listeners (Event Delegation) ---
+            adminView.addEventListener('click', (e) => {
+                const target = e.target.closest('button[data-action]');
+                if (!target) return;
+                const action = target.dataset.action;
+                const id = target.dataset.id;
+                if (action) openAdminModal(action, id);
+            });
+
+            // --- Customer Button Listeners (Event Delegation) ---
+            customerView.addEventListener('click', (e) => {
+                const target = e.target.closest('button[data-action]');
+                if (!target) return;
+
+                const action = target.dataset.action;
+                const type = target.dataset.type;
+                const id = target.dataset.id;
+
+                if (action === 'addToCart') {
+                    addToCart(type, id);
+                }
+                if (action === 'viewDetails') {
+                    openDetailsModal(type, id);
+                }
+            });
+
+            // --- Search Listeners ---
+            searchBar.addEventListener('input', handleSearch);
+            clearSearchBtn.addEventListener('click', clearSearch);
+
+            // Initial Render
+            renderAllAdmin();
+        });
+    </script>
+</body>
+
+</html>
